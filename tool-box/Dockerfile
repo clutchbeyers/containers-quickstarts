@@ -7,14 +7,3 @@ ENV PYTHON_37_MIRROR https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz
 
 RUN curl $OC_CLIENT_MIRROR | tar -C /usr/local/bin/ -xzf -
 RUN curl $PYTHON_37_MIRROR | tar -C /usr/local/bin/ -xzf -
-
-WORKDIR $HOME
-
-ADD ./root /
-
-RUN chmod u+x /usr/local/bin/run
-
-USER 1001
-
-ENTRYPOINT ["/usr/local/bin/run"]
-CMD ["sleep", "infinity"]

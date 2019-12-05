@@ -20,6 +20,7 @@ ENV PYENV_ROOT="$HOME/.pyenv"
 ENV PATH="$PYENV_ROOT/bin:$PATH"
 
 RUN pyenv install 3.7.5
+RUN pyenv global 3.7.5
 
 WORKDIR $HOME
 

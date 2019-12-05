@@ -14,10 +14,6 @@ RUN yum clean all
 
 COPY .bashrc $HOME/.bashrc
 
-RUN source $HOME/.bashrc
-
-RUN pyenv install 3.7.5
-
 WORKDIR $HOME
 
 ADD ./root /

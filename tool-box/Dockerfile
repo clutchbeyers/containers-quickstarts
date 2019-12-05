@@ -14,6 +14,8 @@ RUN yum clean all
 
 COPY .bashrc $HOME/.bashrc
 
+RUN source $HOME/.bashrc
+
 WORKDIR $HOME
 
 ADD ./root /

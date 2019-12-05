@@ -19,6 +19,8 @@ RUN source $HOME/.bashrc
 ENV PYENV_ROOT="$HOME/.pyenv"
 ENV PATH="$PYENV_ROOT/bin:$PATH"
 
+RUN pyenv install 3.7.5
+
 WORKDIR $HOME
 
 ADD ./root /

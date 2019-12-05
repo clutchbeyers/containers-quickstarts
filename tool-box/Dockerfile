@@ -8,9 +8,9 @@ ENV HOME /home/tool-box
 RUN curl $OC_CLIENT_MIRROR | tar -C /usr/local/bin/ -xzf -
 RUN git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 
-RUN yum -y install epel-release && \
-    yum install git gcc zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel && \
-    yum clean all
+RUN yum -y install epel-release
+RUN yum -y install git gcc zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel
+RUN yum clean all
 
 COPY .bashrc $HOME/.bashrc
 

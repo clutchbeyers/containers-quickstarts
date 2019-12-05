@@ -16,8 +16,8 @@ COPY .bashrc $HOME/.bashrc
 
 RUN source $HOME/.bashrc
 
-RUN export PYENV_ROOT="$HOME/.pyenv"
-RUN export PATH="$PYENV_ROOT/bin:$PATH"
+ENV PYENV_ROOT="$HOME/.pyenv"
+ENV PATH="$PYENV_ROOT/bin:$PATH"
 
 WORKDIR $HOME
 

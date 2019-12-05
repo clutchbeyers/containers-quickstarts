@@ -3,7 +3,28 @@ FROM openshift/base-centos7:latest
 MAINTAINER Christopher.Beyers@delta.com>
 
 ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.2.10-201911290432.git.0.888f9c6.el7/linux/oc.tar.gz
-ENV PYTHON_37_MIRROR https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz
+ENV HOME /home/tool-box
 
 RUN curl $OC_CLIENT_MIRROR | tar -C /usr/local/bin/ -xzf -
-RUN curl $PYTHON_37_MIRROR | tar -C /usr/local/bin/ -xzf -
+RUN git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+
+RUN yum -y install epel-release && \
+    yum install git gcc zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel && \
+    yum clean all
+
+COPY .bashrc $HOME/.bashrc
+
+RUN source $HOME/.bashrc
+
+RUN pyenv install 3.7.5
+
+WORKDIR $HOME
+
+ADD ./root /
+
+RUN chmod u+x /usr/local/bin/run
+
+USER 1001
+
+ENTRYPOINT ["/usr/local/bin/run"]
+CMD ["sleep", "infinity"]

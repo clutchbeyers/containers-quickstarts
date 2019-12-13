@@ -1,7 +1,5 @@
 FROM openshift/base-centos7:latest
 
-MAINTAINER Christopher.Beyers@delta.com>
-
 ENV OC_CLIENT_MIRROR https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.2.10-201911290432.git.0.888f9c6.el7/linux/oc.tar.gz
 ENV HOME /home/tool-box
 
@@ -22,6 +20,7 @@ ENV PATH="$PYENV_ROOT/bin:$PATH"
 RUN pyenv install 3.7.5
 RUN pyenv global 3.7.5
 
+RUN echo 'options single-request-reopen' >> /etc/resolv.conf
 WORKDIR $HOME
 
 ADD ./root /
